@@ -5,11 +5,17 @@ const express = require("express")
 const userRouter  = express.Router()
 // Local Modules
 const rootDir =  require('../utiles/path')
+const {registeredHomes} = require("./hostRouter")
 
 userRouter.get('/',(req,res,next)=>{
   console.log("req",req.path)
 
-  res.sendFile(path.join(rootDir,'views','home.html'))
+// This for simple html file
+// res.sendFile(path.join(rootDir,'views','home.html'))  
+console.log("registeredHomes",registeredHomes);
+
+// For ejs
+res.render("home",{registeredHomes: registeredHomes , pageTitle:"airbnb Home"}) 
 })
 
 
